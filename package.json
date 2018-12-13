@@ -1,0 +1,31 @@
+{
+  "name": "movie-searcher",
+  "version": "1.0.0",
+  "description": "Movie search application",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pafker/movie-searcher.git"
+  },
+  "author": "Patryk Pawlos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pafker/movie-searcher/issues"
+  },
+  "homepage": "https://github.com/Pafker/movie-searcher#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "knex": "^0.16.2",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.8"
+  }
+}
