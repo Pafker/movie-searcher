@@ -1,9 +1,11 @@
 const express = require('express');
 const http = require('http');
 const bodyparser = require('body-parser');
-const apiRouter = require ('./src/routes/api');
+const apiRouter = require('./src/routes/api');
+const postgres = require('./postgres');
 
 const app = express();
+postgres.createConnection();
 
 app.set('port', process.env.PORT || 3000);
 app.use(bodyparser.json());
