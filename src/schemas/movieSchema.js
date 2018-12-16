@@ -13,8 +13,7 @@ module.exports = new EntitySchema({
         },
         title: {
             type: 'varchar',
-            nullable: false,
-            unique: true
+            nullable: false
         },
         released: {
             type: 'varchar',

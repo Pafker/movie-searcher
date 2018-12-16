@@ -13,12 +13,14 @@ exports.addMovie = function(movie){
     return new Promise((resolve, reject) => {
         if (validateMovie(movie)) reject('You must provide movie title');
         resolve(movie.title);
-    }).then((title) => {
+    })
+    .then((title) => {
         return rpn(getOmdbPayload(title))
             .then((movieInfo) => {
                 if (movieInfo.Error) throw new Error(movieInfo.Error);
                 return new Movie(movieInfo.Title, movieInfo.Released, movieInfo.Runtime, null);
             })
+            .then((movie) => checkIfMovieUnique(movie))
             .then((movie) => typeorm.getConnection().manager.insert(Movie, movie))
                 .then((id) => `Created movie with id: ${id.raw[0].id}`);
     });
@@ -34,4 +36,14 @@ function getOmdbPayload(movieTitle){
         method: 'GET',
         json: true
     };
+}
+
+function checkIfMovieUnique(movie){
+    return new Promise((resolve, reject) => {
+        typeorm.getConnection().manager.findOne(Movie, {where: {title: movie.title}})
+        .then((data) => {
+            if (data) reject(`${data.title} already exists in database, id: ${data.id}`);
+            resolve(movie);
+        });
+    });
 }
