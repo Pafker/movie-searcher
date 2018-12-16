@@ -13,12 +13,12 @@ module.exports = new EntitySchema({
         },
         title: {
             type: 'varchar',
-            nullable: false
+            nullable: false,
+            unique: true
         },
         released: {
             type: 'varchar',
-            nullable: false,
-            
+            nullable: false
         },
         runtime: {
             type: 'varchar',

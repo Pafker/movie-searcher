@@ -3,6 +3,7 @@ const http = require('http');
 const bodyparser = require('body-parser');
 const apiRouter = require('./src/routes/api');
 const postgres = require('./postgres');
+require('dotenv').config();
 
 const app = express();
 postgres.createConnection();

@@ -12,6 +12,6 @@ exports.createConnection = function(){
             CommentSchema
         ],
         synchronize: true,
-        logging: ['query', 'error']
+        logging: ['error']
     });
 };

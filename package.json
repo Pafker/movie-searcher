@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "homepage": "https://github.com/Pafker/movie-searcher#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "pg": "^7.7.1",
     "request": "^2.88.0",
@@ -27,6 +28,7 @@
     "typeorm": "^0.2.9"
   },
   "devDependencies": {
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.8"
   }
 }

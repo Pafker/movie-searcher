@@ -1,12 +1,11 @@
 const express = require('express');
 const movieRouter = require('./movieRouter');
+const commentRouter = require('./commentRouter');
 
 const router = express.Router();
 
-router.get('/hello', (req, res) => {
-    res.status(200).send('Hello');
-});
-
 router.use('/movies', movieRouter);
+
+router.use('/comments', commentRouter);
 
 module.exports = router;

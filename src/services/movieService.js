@@ -10,14 +10,28 @@ exports.getMovies = function(){
 };
 
 exports.addMovie = function(movie){
-    const omdbPayload = {
-        uri: `http://www.omdbapi.com/?t=${movie.title}&apikey=${process.env.OMDB_APIKEY}`,
-        method: 'GET'
-    };
-    return rpn(omdbPayload)
-        .then((data) => {
-            let movieInfo = JSON.parse(data);
-            let movie = new Movie(movieInfo.Title, movieInfo.Released, movieInfo.Runtime, null);
-            return movie;
-        }).then((movie) => typeorm.getConnection().manager.insert(Movie, movie));
+    return new Promise((resolve, reject) => {
+        if (validateMovie(movie)) reject('You must provide movie title');
+        resolve(movie.title);
+    }).then((title) => {
+        return rpn(getOmdbPayload(title))
+            .then((movieInfo) => {
+                if (movieInfo.Error) throw new Error(movieInfo.Error);
+                return new Movie(movieInfo.Title, movieInfo.Released, movieInfo.Runtime, null);
+            })
+            .then((movie) => typeorm.getConnection().manager.insert(Movie, movie))
+                .then((id) => `Created movie with id: ${id.raw[0].id}`);
+    });
 };
+
+function validateMovie(movie){
+    return !movie.title;
+}
+
+function getOmdbPayload(movieTitle){
+    return omdbPayload = {
+        uri: `http://www.omdbapi.com/?t=${movieTitle}&apikey=${process.env.OMDB_APIKEY}`,
+        method: 'GET',
+        json: true
+    };
+}

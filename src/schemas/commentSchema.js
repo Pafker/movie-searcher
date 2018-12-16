@@ -12,10 +12,12 @@ module.exports = new EntitySchema({
             generated: true
         },
         author: {
-            type: 'varchar'
+            type: 'varchar',
+            nullable: false
         },
         content: {
-            type: 'varchar'
+            type: 'varchar',
+            nullable: false
         }
     },
     relations: {
