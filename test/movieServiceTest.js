@@ -42,7 +42,7 @@ describe('Movie Service', () => {
         });
     });
 
-    describe('#addComment(): valid comment, movie found', () => {
+    describe('#addMovie(): valid movie payload, movie does exist in omdb database, movie doesnt exist in app database', () => {
         it('should insert movie, should return success message with record id', () => {
             movieService.addMovie({'title': 'test'})
                 .then((data) => assert.equal(JSON.stringify(data).startsWith('"Created movie with id'), true));
