@@ -7,16 +7,16 @@ Frameworks used:
   - Mocha
 # Features
 **Add movie to database**  
-POST, `api/movies`  
+POST, `api/v1/movies`  
 Body:
 ```json
 {"title": "Matrix"}
 ```
 **Get movies**  
-GET, `api/movies`
+GET, `api/v1/movies`
 
 **Add comment to database**  
-POST, `api/comments`  
+POST, `api/v1/comments`  
 Body: 
 ```json
 {"author": "Pafker",
@@ -24,7 +24,7 @@ Body:
 "movie": "Matrix"}
 ```
 **Get comments**
-GET, `api/comments`
+GET, `api/v1/comments`
 
 # Installation
 1. Close repository to your local machine

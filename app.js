@@ -1,19 +1,3 @@
-const express = require('express');
-const http = require('http');
-const bodyparser = require('body-parser');
-const apiRouter = require('./src/routes/api');
-const postgres = require('./postgres');
 require('dotenv').config();
-
-const app = express();
-postgres.createConnection();
-
-app.set('port', process.env.PORT || 3000);
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended: true}));
-
-app.use('/api', apiRouter);
-
-http.createServer(app).listen(app.get('port'), () => {
-    console.log(`== Express server running on port ${app.get('port')} ==`);
-});
+require('./postgres').createConnection();
+require('./express').createServer();

@@ -1,11 +1,8 @@
 const express = require('express');
-const movieRouter = require('./movieRouter');
-const commentRouter = require('./commentRouter');
+const firstVersionRouter = require('./v1/firstVersionRouter')
 
 const router = express.Router();
 
-router.use('/movies', movieRouter);
-
-router.use('/comments', commentRouter);
+router.use('/v1', firstVersionRouter);
 
 module.exports = router;
