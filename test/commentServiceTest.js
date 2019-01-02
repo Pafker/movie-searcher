@@ -25,9 +25,9 @@ describe('Comment Service', () => {
     });
 
     describe('#addComment(): valid comment, movie not found', () => {
-        it('should reject with error: EntityNotFound: Could not find any entity of type "Movie" matching', () => {
+        it('should reject with error: Error: Movie invalid title doesnt exist in database', () => {
             commentService.addComment({'author': 'Pafker', 'content': 'Test comment', 'movie': 'invalid title'})
-                .catch((error) => assert.equal(JSON.stringify(error).startsWith('{"name":"EntityNotFound"'), true));
+                .catch((error) => assert.equal(error.message, 'Movie invalid title doesnt exist in database'));
         });
     });
 
